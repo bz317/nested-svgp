@@ -1,18 +1,18 @@
 # Nested sparse Gaussian processes
 
-One unwhitened sparse GP is trained for every budget at once. The variational family is \(q(u)=N(m,S)\) with \(S=LL^\top\). A budget \(k\) is a prefix of the inducing set: the first \(k\) locations, the corresponding mean, and the matching principal submatrix of \(S\). The full set is unchanged by a reordering of those points.
+One unwhitened sparse GP is trained for every budget at once. The variational family is $`q(u)=N(m,S)`$ with $`S=LL^\top`$. A budget $`k`$ is a prefix of the inducing set: the first $`k`$ locations, the corresponding mean, and the matching principal submatrix of $`S`$. The full set is unchanged by a reordering of those points.
 
-The primary order is conditional KL. Start from the empty prefix and add the inducing point that most increases \(\mathrm{KL}(q(u_A)\,\|\,p(u_A))\). That order is recomputed after every training step. The training loss is the mean predictive NLPD of the prefixes at \(k\in\{4,8,16\}\), plus the full-set ELBO.
+The primary order is conditional KL. Start from the empty prefix and add the inducing point that most increases $`\mathrm{KL}(q(u_A)\,\|\,p(u_A))`$. That order is recomputed after every training step. The training loss is the mean predictive NLPD of the prefixes at $`k\in\{4,8,16\}`$, plus the full-set ELBO.
 
 Installation is in [INSTALL.md](INSTALL.md). The 1D comparison is below. A short account of the methods is in [summary_so_far.txt](summary_so_far.txt).
 
 ## Synthetic results
 
-Four tasks on \([-2, 2]\), three data seeds, 32 inducing points, budgets \(k=1,\ldots,32\). Each entry is the mean across seeds, with the seed standard deviation in parentheses.
+Four tasks on $`[-2, 2]`$, three data seeds, 32 inducing points, budgets $`k=1,\ldots,32`$. Each entry is the mean across seeds, with the seed standard deviation in parentheses.
 
-**Full** is the raw score at \(k=32\). Lower is better.
+**Full** is the raw score at $`k=32`$. Lower is better.
 
-**BP-AUC** is the budget-performance AUC. For one task and one metric, take each seed’s curve \(y_s(k)\). Let \(L\) and \(H\) be the minimum and maximum, over methods and budgets, of the seed-averaged curves. The same \(L\) and \(H\) are used for every method. The scaled curve is \((H-y_s(k))/(H-L)\), which is higher when the raw score is better. BP-AUC is the trapezoidal average of that curve from \(k=1\) to \(k=32\), divided by \(31\). The number shown is the mean of the three seed AUCs. Higher is better. Bold marks the best mean in that column. A tie at the displayed precision is bolded on both.
+**BP-AUC** is the budget-performance AUC. For one task and one metric, take each seed’s curve $`y_s(k)`$. Let $`L`$ and $`H`$ be the minimum and maximum, over methods and budgets, of the seed-averaged curves. The same $`L`$ and $`H`$ are used for every method. The scaled curve is $`(H-y_s(k))/(H-L)`$, which is higher when the raw score is better. BP-AUC is the trapezoidal average of that curve from $`k=1`$ to $`k=32`$, divided by $`31`$. The number shown is the mean of the three seed AUCs. Higher is better. Bold marks the best mean in that column. A tie at the displayed precision is bolded on both.
 
 GVS reads prefixes of the condKL posterior, so its full-budget score matches condKL. The naive sparse GP is one full ELBO, sorted once by conditional KL.
 
@@ -115,7 +115,7 @@ The same numbers are drawn in `figures/fig_order_scores.pdf`. The legend column 
 | Path | Role |
 |---|---|
 | `svgp.py` | Kernels, ELBO, predictions, conditional-KL order, training step |
-| `data.py` | EQ, Matérn-5/2, weak periodic, and sawtooth tasks on \([-2,2]\) |
+| `data.py` | EQ, Matérn-5/2, weak periodic, and sawtooth tasks on $`[-2,2]`$ |
 | `sogp.py` | Csató–Opper sparse online GP |
 | `self_test.py` | Finite-difference checks for the ELBO |
 | `run_synthetic1d.py` | First nested-prefix comparison |
