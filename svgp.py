@@ -407,19 +407,23 @@ def zero_grads(model):
     }
 
 
-def _matched_joint(model, x, y, mode, budgets, gamma, rng, n, block_prefix_noise=False, perm=None):
-    """Same weights for a prefix block and one random subset of each size.
+def _matched_joint(model, x, y, mode, budgets, gamma, rng, n, block_prefix_noise=False, perm=None, sample_prefix_k=False):
+    """Prefix or subset data term, plus the full-set ELBO.
 
-    loss = mean_{k in budgets}[data_term_k] + gamma * (-ELBO_M).
-    data_term is -ELBO_k or the sum of marginal NLPD. The full-set coefficient
-    and the 1/|B| weight on each budget match across the four cells.
+    Subset losses use every budget in `budgets` with equal weight. Prefix
+    losses draw one size k uniformly from 1, ..., M and use that prefix.
+    data_term is -ELBO_k or the sum of marginal NLPD.
     """
     selection, data_term = mode.split("_", 1)
     term = "elbo" if data_term == "elbo" else "marginal"
     loss = 0.0
     grads = zero_grads(model)
-    weight = 1.0 / len(budgets)
-    for k in budgets:
+    if sample_prefix_k and selection == "prefix":
+        ks = [int(rng.integers(1, model.M + 1))]
+    else:
+        ks = list(budgets)
+    weight = 1.0 / len(ks)
+    for k in ks:
         if selection == "prefix":
             idx = np.arange(k) if perm is None else np.asarray(perm[:k], dtype=int)
         else:
@@ -449,9 +453,14 @@ def objective(model, x, y, mode, budgets, gamma, rng, block_prefix_noise=False, 
         # with the predictive log likelihood in place of the expected
         # conditional log likelihood.
         return loss_indices(model, full, x, y, grad=True, term="marginal_kl")
-    if mode in ("prefix_elbo", "prefix_nlpd", "subset_elbo", "subset_nlpd"):
+    if mode in ("prefix_elbo", "prefix_nlpd"):
         return _matched_joint(
-            model, x, y, mode, budgets, gamma, rng, n, block_prefix_noise, perm
+            model, x, y, mode, budgets, gamma, rng, n, block_prefix_noise, perm,
+            sample_prefix_k=True,
+        )
+    if mode in ("subset_elbo", "subset_nlpd"):
+        return _matched_joint(
+            model, x, y, mode, budgets, gamma, rng, n, block_prefix_noise, perm,
         )
     if mode == "matryoshka":
         # Prefix term: sum of marginal predictive NLPD. The full term is the

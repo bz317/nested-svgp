@@ -6,9 +6,10 @@ parameter update and always replace the permutation:
     kl      marginal KL of q(u_j) from the zero-mean prior N(0, K_jj)
     delete  Csató–Opper deletion score |alpha_j| / Q_jj, Q = K_ZZ^{-1}
 
-The prefix loss is unchanged: mean marginal NLPD at budgets 4, 8, and 16,
-plus the full-set ELBO. The selection split is used only to checkpoint the
-full model. Neither score reads labels.
+The prefix loss is the full-set ELBO plus the marginal NLPD of one prefix.
+The prefix size is drawn uniformly from 1 through M on every step. The
+selection split is used only to checkpoint the full model. Neither score
+reads labels.
 """
 
 from __future__ import annotations

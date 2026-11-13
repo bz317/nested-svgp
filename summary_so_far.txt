@@ -1,6 +1,6 @@
 Primary method: condKL
 
-One sparse GP is trained for every budget at once. Inducing points are ordered by conditional KL: start from the empty prefix and add the point that most increases KL(q(u_A) || p(u_A)). A budget k is the first k points in that order, read from the same posterior. The order is recomputed after every training step. The training loss is the predictive NLPD of the prefixes at k = 4, 8, and 16, plus the full-set ELBO.
+One sparse GP is trained for every budget at once. Inducing points are ordered by conditional KL: start from the empty prefix and add the point that most increases KL(q(u_A) || p(u_A)). A budget k is the first k points in that order, read from the same posterior. The order is recomputed after every training step. Each training step adds the full-set ELBO to the predictive NLPD of one prefix, with the prefix size drawn uniformly from 1 through 32.
 
 Other variants we tried
 

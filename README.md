@@ -2,7 +2,7 @@
 
 One unwhitened sparse GP is trained for every budget at once. The variational family is $`q(u)=N(m,S)`$ with $`S=LL^\top`$. A budget $`k`$ is a prefix of the inducing set: the first $`k`$ locations, the corresponding mean, and the matching principal submatrix of $`S`$. The full set is unchanged by a reordering of those points.
 
-The primary order is conditional KL. Start from the empty prefix and add the inducing point that most increases $`\mathrm{KL}(q(u_A)\,\|\,p(u_A))`$. That order is recomputed after every training step. The training loss is the mean predictive NLPD of the prefixes at $`k\in\{4,8,16\}`$, plus the full-set ELBO.
+The primary order is conditional KL. Start from the empty prefix and add the inducing point that most increases $`\mathrm{KL}(q(u_A)\,\|\,p(u_A))`$. That order is recomputed after every training step. Each training step adds the full-set ELBO to the predictive NLPD of one prefix, whose size $`k`$ is drawn uniformly from $`\{1,\ldots,32\}`$.
 
 Installation is in [INSTALL.md](INSTALL.md). The 1D comparison is below. A short account of the methods is in [summary_so_far.txt](summary_so_far.txt).
 
@@ -22,45 +22,45 @@ GVS reads prefixes of the condKL posterior, so its full-budget score matches con
 
 | Method | Full | BP-AUC |
 |---|---:|---:|
-| condKL | **−0.792 (0.089)** | **0.880 (0.012)** |
-| Naive sparse GP | −0.778 (0.066) | 0.840 (0.009) |
-| RST–Greedy | **−0.792 (0.087)** | 0.844 (0.018) |
-| PSIP | −0.276 (0.120) | 0.779 (0.075) |
-| SOGP | −0.452 (0.085) | 0.786 (0.011) |
-| GVS | **−0.792 (0.089)** | 0.768 (0.048) |
+| condKL | −0.783 (0.058) | **0.851 (0.010)** |
+| Naive sparse GP | −0.778 (0.066) | 0.817 (0.011) |
+| RST–Greedy | **−0.792 (0.087)** | 0.822 (0.021) |
+| PSIP | −0.276 (0.120) | 0.747 (0.086) |
+| SOGP | −0.452 (0.085) | 0.755 (0.012) |
+| GVS | −0.783 (0.058) | 0.739 (0.017) |
 
 #### Weak periodic
 
 | Method | Full | BP-AUC |
 |---|---:|---:|
-| condKL | −0.644 (0.042) | **0.811 (0.022)** |
-| Naive sparse GP | −0.652 (0.047) | 0.771 (0.014) |
-| RST–Greedy | **−0.685 (0.011)** | 0.784 (0.064) |
-| PSIP | 0.687 (0.534) | 0.665 (0.035) |
-| SOGP | −0.629 (0.039) | 0.742 (0.024) |
-| GVS | −0.644 (0.042) | 0.643 (0.111) |
+| condKL | **−0.715 (0.030)** | **0.814 (0.072)** |
+| Naive sparse GP | −0.652 (0.047) | 0.744 (0.015) |
+| RST–Greedy | −0.685 (0.011) | 0.758 (0.068) |
+| PSIP | 0.687 (0.534) | 0.631 (0.037) |
+| SOGP | −0.629 (0.039) | 0.714 (0.026) |
+| GVS | **−0.715 (0.030)** | 0.675 (0.093) |
 
 #### Matern
 
 | Method | Full | BP-AUC |
 |---|---:|---:|
-| condKL | −0.733 (0.096) | **0.818 (0.025)** |
-| Naive sparse GP | **−0.738 (0.091)** | 0.787 (0.041) |
-| RST–Greedy | −0.730 (0.098) | 0.742 (0.065) |
-| PSIP | −0.068 (0.315) | 0.685 (0.039) |
-| SOGP | −0.691 (0.085) | 0.751 (0.037) |
-| GVS | −0.733 (0.096) | 0.688 (0.071) |
+| condKL | −0.734 (0.099) | **0.826 (0.050)** |
+| Naive sparse GP | **−0.738 (0.091)** | 0.791 (0.040) |
+| RST–Greedy | −0.730 (0.098) | 0.746 (0.064) |
+| PSIP | −0.068 (0.315) | 0.690 (0.038) |
+| SOGP | −0.691 (0.085) | 0.755 (0.037) |
+| GVS | −0.734 (0.099) | 0.705 (0.013) |
 
 #### Sawtooth
 
 | Method | Full | BP-AUC |
 |---|---:|---:|
-| condKL | **0.148 (0.039)** | **0.721 (0.130)** |
-| Naive sparse GP | 0.178 (0.041) | 0.658 (0.076) |
-| RST–Greedy | 0.166 (0.025) | 0.716 (0.054) |
-| PSIP | 0.457 (0.128) | 0.683 (0.027) |
-| SOGP | 0.317 (0.134) | 0.441 (0.248) |
-| GVS | **0.148 (0.039)** | 0.678 (0.132) |
+| condKL | **0.101 (0.061)** | **0.788 (0.023)** |
+| Naive sparse GP | 0.178 (0.041) | 0.630 (0.072) |
+| RST–Greedy | 0.166 (0.025) | 0.686 (0.052) |
+| PSIP | 0.457 (0.128) | 0.653 (0.025) |
+| SOGP | 0.317 (0.134) | 0.423 (0.238) |
+| GVS | **0.101 (0.061)** | 0.744 (0.036) |
 
 ### Latent RMSE
 
@@ -68,45 +68,45 @@ GVS reads prefixes of the condKL posterior, so its full-budget score matches con
 
 | Method | Full | BP-AUC |
 |---|---:|---:|
-| condKL | 0.050 (0.003) | **0.901 (0.011)** |
+| condKL | 0.050 (0.003) | **0.900 (0.007)** |
 | Naive sparse GP | 0.052 (0.002) | 0.891 (0.008) |
 | RST–Greedy | **0.049 (0.003)** | 0.869 (0.023) |
-| PSIP | 0.220 (0.041) | 0.781 (0.013) |
-| SOGP | 0.107 (0.010) | 0.859 (0.006) |
-| GVS | 0.050 (0.003) | 0.770 (0.039) |
+| PSIP | 0.220 (0.041) | 0.782 (0.013) |
+| SOGP | 0.107 (0.010) | 0.860 (0.006) |
+| GVS | 0.050 (0.003) | 0.760 (0.020) |
 
 #### Weak periodic
 
 | Method | Full | BP-AUC |
 |---|---:|---:|
-| condKL | 0.066 (0.007) | **0.874 (0.012)** |
-| Naive sparse GP | **0.065 (0.008)** | 0.836 (0.025) |
+| condKL | **0.063 (0.005)** | **0.874 (0.051)** |
+| Naive sparse GP | 0.065 (0.008) | 0.836 (0.025) |
 | RST–Greedy | 0.066 (0.011) | 0.817 (0.052) |
-| PSIP | 0.473 (0.261) | 0.663 (0.043) |
+| PSIP | 0.473 (0.261) | 0.662 (0.043) |
 | SOGP | 0.070 (0.006) | 0.825 (0.032) |
-| GVS | 0.066 (0.007) | 0.730 (0.050) |
+| GVS | **0.063 (0.005)** | 0.751 (0.054) |
 
 #### Matern
 
 | Method | Full | BP-AUC |
 |---|---:|---:|
-| condKL | 0.060 (0.006) | **0.875 (0.017)** |
-| Naive sparse GP | 0.059 (0.005) | 0.858 (0.024) |
-| RST–Greedy | **0.058 (0.005)** | 0.775 (0.066) |
-| PSIP | 0.333 (0.120) | 0.674 (0.042) |
-| SOGP | 0.068 (0.004) | 0.848 (0.021) |
-| GVS | 0.060 (0.006) | 0.750 (0.007) |
+| condKL | 0.061 (0.006) | **0.879 (0.036)** |
+| Naive sparse GP | 0.059 (0.005) | 0.857 (0.025) |
+| RST–Greedy | **0.058 (0.005)** | 0.773 (0.066) |
+| PSIP | 0.333 (0.120) | 0.671 (0.042) |
+| SOGP | 0.068 (0.004) | 0.847 (0.021) |
+| GVS | 0.061 (0.006) | 0.749 (0.021) |
 
 #### Sawtooth
 
 | Method | Full | BP-AUC |
 |---|---:|---:|
-| condKL | 0.274 (0.026) | 0.718 (0.204) |
-| Naive sparse GP | **0.270 (0.031)** | 0.706 (0.203) |
-| RST–Greedy | 0.274 (0.026) | 0.561 (0.098) |
-| PSIP | 0.406 (0.123) | **0.739 (0.053)** |
-| SOGP | 0.274 (0.020) | 0.702 (0.133) |
-| GVS | 0.274 (0.026) | 0.590 (0.116) |
+| condKL | **0.255 (0.015)** | **0.817 (0.044)** |
+| Naive sparse GP | 0.270 (0.031) | 0.676 (0.194) |
+| RST–Greedy | 0.274 (0.026) | 0.538 (0.094) |
+| PSIP | 0.406 (0.123) | 0.708 (0.051) |
+| SOGP | 0.274 (0.020) | 0.673 (0.128) |
+| GVS | **0.255 (0.015)** | 0.656 (0.018) |
 
 The same numbers are drawn in `figures/fig_order_scores.pdf`. The legend column is BP-AUC.
 
