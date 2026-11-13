@@ -1,0 +1,110 @@
+[
+  {
+    "score": "delete",
+    "task": "eq",
+    "data_seed": 0,
+    "order_changes": 1000,
+    "steps": 1000,
+    "best_val": -0.8097191481432586,
+    "seconds": 2.257289670058526
+  },
+  {
+    "score": "delete",
+    "task": "eq",
+    "data_seed": 1,
+    "order_changes": 1000,
+    "steps": 1000,
+    "best_val": -0.8461273849276998,
+    "seconds": 2.1502848949749023
+  },
+  {
+    "score": "delete",
+    "task": "eq",
+    "data_seed": 2,
+    "order_changes": 1000,
+    "steps": 1000,
+    "best_val": -0.8563745260035802,
+    "seconds": 2.238146050949581
+  },
+  {
+    "score": "delete",
+    "task": "weak_periodic",
+    "data_seed": 0,
+    "order_changes": 1000,
+    "steps": 1000,
+    "best_val": -0.5515261309999027,
+    "seconds": 3.555401160963811
+  },
+  {
+    "score": "delete",
+    "task": "weak_periodic",
+    "data_seed": 1,
+    "order_changes": 1000,
+    "steps": 1000,
+    "best_val": -0.8175828589101846,
+    "seconds": 3.5153914279071614
+  },
+  {
+    "score": "delete",
+    "task": "weak_periodic",
+    "data_seed": 2,
+    "order_changes": 1000,
+    "steps": 1000,
+    "best_val": -0.7690159761316779,
+    "seconds": 3.4501550890272483
+  },
+  {
+    "score": "delete",
+    "task": "matern",
+    "data_seed": 0,
+    "order_changes": 1000,
+    "steps": 1000,
+    "best_val": -0.7092440628575722,
+    "seconds": 2.385574455023743
+  },
+  {
+    "score": "delete",
+    "task": "matern",
+    "data_seed": 1,
+    "order_changes": 1000,
+    "steps": 1000,
+    "best_val": -0.7462036259575071,
+    "seconds": 2.390936656971462
+  },
+  {
+    "score": "delete",
+    "task": "matern",
+    "data_seed": 2,
+    "order_changes": 1000,
+    "steps": 1000,
+    "best_val": -0.7701403643986032,
+    "seconds": 2.3358154899906367
+  },
+  {
+    "score": "delete",
+    "task": "sawtooth",
+    "data_seed": 0,
+    "order_changes": 1000,
+    "steps": 1000,
+    "best_val": 0.14375621557311524,
+    "seconds": 2.302750139962882
+  },
+  {
+    "score": "delete",
+    "task": "sawtooth",
+    "data_seed": 1,
+    "order_changes": 1000,
+    "steps": 1000,
+    "best_val": 0.1485285843571214,
+    "seconds": 2.2116434409981593
+  },
+  {
+    "score": "delete",
+    "task": "sawtooth",
+    "data_seed": 2,
+    "order_changes": 1000,
+    "steps": 1000,
+    "best_val": 0.09704933818492227,
+    "seconds": 2.2493447919841856
+  }
+]

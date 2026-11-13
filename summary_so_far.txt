@@ -1,0 +1,27 @@
+Primary method: condKL
+
+One sparse GP is trained for every budget at once. Inducing points are ordered by conditional KL: start from the empty prefix and add the point that most increases KL(q(u_A) || p(u_A)). A budget k is the first k points in that order, read from the same posterior. The order is recomputed after every training step. The training loss is the predictive NLPD of the prefixes at k = 4, 8, and 16, plus the full-set ELBO.
+
+Other variants we tried
+
+- Fixed index order. The prefix is the first k van der Corput inducing points. Training moves the locations but does not reorder them.
+- Greedy validation NLPD. Forward selection on the selection split, then prefix training on that frozen order.
+- The same greedy order, refreshed every 200 steps only when the selection NLPD improves, and refreshed after every step.
+- Random order, then prefix training.
+- Random subsets during training, then one greedy order at the end (RST–Greedy).
+- Cheaper scores refreshed every step: marginal KL, the Csató–Opper deletion score, and marginal KL times a redundancy penalty.
+- Full ELBO training only, then one conditional-KL sort and no prefix loss (naive sparse GP).
+- The same prefix loss as condKL, but the order is pivoted Cholesky (GVS + prefix).
+- Backward deletion by conditional KL. For this Gaussian posterior the projection is the marginal, so the kept points do not move.
+
+Comparators
+
+- Naive sparse GP. One full ELBO model. Sort its inducing points once by conditional KL and read a prefix at every budget.
+- RST–Greedy. Random-subset training, then one greedy validation order.
+- PSIP (Uhrenholt et al.). Bernoulli inclusion probabilities, their sum-ELBO, and their 200 / 600 / 200 schedule. The sparsity weight is chosen on the validation split. MAP keeps points with probability at least 1/2; an empty set stays empty. The budget curve is a top-k adaptation, not their deployed subset.
+- SOGP (Csató and Opper). One online pass. When the basis exceeds the budget, the lowest-scoring point is deleted and the posterior parameters are updated.
+- GVS. Pivoted Cholesky of the same inducing set, then shared-posterior prefixes. That shared-posterior use is an adaptation of greedy variance selection.
+
+What stands out
+
+Prefix training is what improves the middle budgets. On EQ at k = 8, condKL beats the naive sparse GP. At k = 32 the two meet. Ordering by pivoted Cholesky, even with the same prefix loss, is worse in the middle. Marginal KL and the one-shot deletion score do not match condKL. PSIP’s MAP set is a real subset and should be compared at that size; putting its unused points back in at large k is not its result.

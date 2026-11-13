@@ -1,0 +1,14 @@
+Nested inducing-point sparse GPs. First experiment: static 1D regression.
+
+Object. One ordered inducing set Z of size M, with unwhitened q(u)=N(m, S)
+and S=LL^T. Budget k deploys Z[:k], m[:k] and L[:k,:k].
+
+Loss. Average of the marginal predictive NLPD at k in {4, 8, 16}, plus the
+negative ELBO at k=M. Prefix ELBOs were tried and rejected for this noise
+level: the expected log likelihood scales as 1/noise^2 and drowns the full
+model. Full-only and independent baselines still train on the ELBO.
+
+Data. Five draws each of EQ, Matern-5/2, weak periodic, and sawtooth, on
+[-2, 2], noise standard deviation 0.1. Sawtooth is fit with a misspecified
+RBF kernel. Evaluate k in {2, 4, 6, 8, 12, 16, 24, 32}, including sizes that
+are not in the training loss.

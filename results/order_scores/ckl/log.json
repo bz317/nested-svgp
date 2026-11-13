@@ -1,0 +1,110 @@
+[
+  {
+    "score": "ckl",
+    "task": "eq",
+    "data_seed": 0,
+    "order_changes": 990,
+    "steps": 1000,
+    "best_val": -0.7646556518098309,
+    "seconds": 29.789273463073187
+  },
+  {
+    "score": "ckl",
+    "task": "eq",
+    "data_seed": 1,
+    "order_changes": 985,
+    "steps": 1000,
+    "best_val": -0.845947735810509,
+    "seconds": 30.1502287510084
+  },
+  {
+    "score": "ckl",
+    "task": "eq",
+    "data_seed": 2,
+    "order_changes": 933,
+    "steps": 1000,
+    "best_val": -0.8390404072295121,
+    "seconds": 29.916613426990807
+  },
+  {
+    "score": "ckl",
+    "task": "weak_periodic",
+    "data_seed": 0,
+    "order_changes": 1000,
+    "steps": 1000,
+    "best_val": -0.5397437698069198,
+    "seconds": 31.5290288599208
+  },
+  {
+    "score": "ckl",
+    "task": "weak_periodic",
+    "data_seed": 1,
+    "order_changes": 1000,
+    "steps": 1000,
+    "best_val": -0.8416703066109679,
+    "seconds": 31.38040629704483
+  },
+  {
+    "score": "ckl",
+    "task": "weak_periodic",
+    "data_seed": 2,
+    "order_changes": 1000,
+    "steps": 1000,
+    "best_val": -0.7774211439609258,
+    "seconds": 31.086484105093405
+  },
+  {
+    "score": "ckl",
+    "task": "matern",
+    "data_seed": 0,
+    "order_changes": 999,
+    "steps": 1000,
+    "best_val": -0.7028405086313856,
+    "seconds": 29.621135942987166
+  },
+  {
+    "score": "ckl",
+    "task": "matern",
+    "data_seed": 1,
+    "order_changes": 999,
+    "steps": 1000,
+    "best_val": -0.7658431989149638,
+    "seconds": 29.61405225796625
+  },
+  {
+    "score": "ckl",
+    "task": "matern",
+    "data_seed": 2,
+    "order_changes": 975,
+    "steps": 1000,
+    "best_val": -0.7705563344932234,
+    "seconds": 29.932170824962668
+  },
+  {
+    "score": "ckl",
+    "task": "sawtooth",
+    "data_seed": 0,
+    "order_changes": 891,
+    "steps": 1000,
+    "best_val": 0.1540997142330415,
+    "seconds": 30.08056451997254
+  },
+  {
+    "score": "ckl",
+    "task": "sawtooth",
+    "data_seed": 1,
+    "order_changes": 999,
+    "steps": 1000,
+    "best_val": 0.11610892511267157,
+    "seconds": 29.89872067095712
+  },
+  {
+    "score": "ckl",
+    "task": "sawtooth",
+    "data_seed": 2,
+    "order_changes": 999,
+    "steps": 1000,
+    "best_val": 0.05773330208049748,
+    "seconds": 28.97791472496465
+  }
+]

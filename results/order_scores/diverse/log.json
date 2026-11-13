@@ -1,0 +1,110 @@
+[
+  {
+    "score": "diverse",
+    "task": "eq",
+    "data_seed": 0,
+    "order_changes": 849,
+    "steps": 1000,
+    "best_val": -0.7707505147905664,
+    "seconds": 36.30665691103786
+  },
+  {
+    "score": "diverse",
+    "task": "eq",
+    "data_seed": 1,
+    "order_changes": 924,
+    "steps": 1000,
+    "best_val": -0.841920548598716,
+    "seconds": 36.9317352459766
+  },
+  {
+    "score": "diverse",
+    "task": "eq",
+    "data_seed": 2,
+    "order_changes": 825,
+    "steps": 1000,
+    "best_val": -0.8662632025057017,
+    "seconds": 36.23092840099707
+  },
+  {
+    "score": "diverse",
+    "task": "weak_periodic",
+    "data_seed": 0,
+    "order_changes": 988,
+    "steps": 1000,
+    "best_val": -0.5397437698069198,
+    "seconds": 38.119950356078334
+  },
+  {
+    "score": "diverse",
+    "task": "weak_periodic",
+    "data_seed": 1,
+    "order_changes": 991,
+    "steps": 1000,
+    "best_val": -0.8175828589101846,
+    "seconds": 37.40251058305148
+  },
+  {
+    "score": "diverse",
+    "task": "weak_periodic",
+    "data_seed": 2,
+    "order_changes": 978,
+    "steps": 1000,
+    "best_val": -0.7690159761316779,
+    "seconds": 37.25516946497373
+  },
+  {
+    "score": "diverse",
+    "task": "matern",
+    "data_seed": 0,
+    "order_changes": 899,
+    "steps": 1000,
+    "best_val": -0.7028405086313856,
+    "seconds": 35.689779409905896
+  },
+  {
+    "score": "diverse",
+    "task": "matern",
+    "data_seed": 1,
+    "order_changes": 925,
+    "steps": 1000,
+    "best_val": -0.7597032784865814,
+    "seconds": 36.1366739270743
+  },
+  {
+    "score": "diverse",
+    "task": "matern",
+    "data_seed": 2,
+    "order_changes": 983,
+    "steps": 1000,
+    "best_val": -0.7733606110443234,
+    "seconds": 36.76248302299064
+  },
+  {
+    "score": "diverse",
+    "task": "sawtooth",
+    "data_seed": 0,
+    "order_changes": 980,
+    "steps": 1000,
+    "best_val": 0.1540997142330415,
+    "seconds": 35.600403256947175
+  },
+  {
+    "score": "diverse",
+    "task": "sawtooth",
+    "data_seed": 1,
+    "order_changes": 976,
+    "steps": 1000,
+    "best_val": 0.13545235971370448,
+    "seconds": 38.50560494302772
+  },
+  {
+    "score": "diverse",
+    "task": "sawtooth",
+    "data_seed": 2,
+    "order_changes": 996,
+    "steps": 1000,
+    "best_val": 0.11703512829928188,
+    "seconds": 35.30293891695328
+  }
+]
